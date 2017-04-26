@@ -5,14 +5,11 @@ import {
     toggleNavbar
 } from "../actions/navbarActions"
 
-const mapStateToProps = state => state.navbar;
-
+const mapStateToProps = state => state;
 
 const mapDispatchToProps = dispatch => {
     return {
-        toggleNavbar() {
-            dispatch(toggleNavbar());
-        }
+
     };
 }
 

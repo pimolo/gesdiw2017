@@ -1,9 +1,9 @@
 import {combineReducers} from "redux";
-import candidate from "./candidate";
+import user from "./user";
 import navbar from "./navbar";
 
 const Main = combineReducers({
-    candidate,
+    user,
     navbar
 });
 

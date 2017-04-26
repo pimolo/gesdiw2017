@@ -1,8 +1,7 @@
 import * as types from "../actions/navbarTypes";
 
 const initialSate = {
-    display: true,
-    title: "GFI Talents"
+    display: true
 };
 
 const navbar = (state = initialSate, action) => {

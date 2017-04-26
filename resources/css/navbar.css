@@ -1,0 +1,9 @@
+.gfi-talents-navbar{
+    background: #303F48;
+    opacity: .6;
+}
+.gfi-talents-navbar:hover,
+.gfi-talents-navbar:focus,
+.gfi-talents-navbar:active{
+    opacity: 1;
+}
