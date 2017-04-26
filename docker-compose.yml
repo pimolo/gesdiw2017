@@ -1,0 +1,15 @@
+version: '3'
+services:
+    web:
+        image: node:7.9
+        volumes:
+            - ./:/usr/src/app
+        ports:
+            - "3000:3000"
+        links:
+            - mongodb
+        tty: true
+    mongodb:
+        image: mongo
+        ports:
+            - "27017:27017"
