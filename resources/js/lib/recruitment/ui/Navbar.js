@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
-import MenuIcon from 'material-ui/svg-icons/navigation/menu';
+import ActionHome from 'material-ui/svg-icons/action/home';
 
 const styles = {
     mediumIcon : {
@@ -33,6 +33,8 @@ export default class Navbar extends React.PureComponent {
 
     }
 
+    // logo_accueil,  mon profil, mon calendrier, mes offres, mes tests, deco
+
     render () {
         return (
             <AppBar
@@ -44,7 +46,7 @@ export default class Navbar extends React.PureComponent {
                       style={styles.medium}
                       onClick={this.props.toggleNavbar}
                   >
-                      <MenuIcon color="white"/>
+                      <ActionHome color="white"/>
                   </IconButton>}/>
         );
     }
