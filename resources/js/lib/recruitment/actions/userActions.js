@@ -1,9 +1,14 @@
 import * as types from "./userTypes";
 import UserApi from "../API/user/userApi";
+import connectionUtil from "../utils/connection";
 
+const connectUtil = new connectionUtil();
 const userApi = new UserApi();
 
 const receivedError = error => {
+    console.group();
+    console.error("server error: ", error);
+    console.groupEnd();
     return {
         type: types.RECEIVE_ERROR
     }
@@ -30,11 +35,12 @@ export const connection = (login, password) => {
         dispatch(requestConnection());
         userApi.connection(login, password,
             response => {
-                console.debug("received server response on login", response)
                 if (response.error)
                     dispatch(receivedError());
-                else
+                else {
                     dispatch(loginSuccess(response));
+                    connectUtil.storeSession(login, password, response);
+                }
         });
     };
 };
@@ -59,10 +65,35 @@ export const logout = () => {
         dispatch(requestLogout());
         userApi.logout(response => {
             console.debug("received server response on logout", response)
-            if (response)
+            if (response) {
                 dispatch(logoutSuccess());
+                connectUtil.killSession();
+            }
             else
                 dispatch(receivedError());
         });
     };
+}
+
+export const restoreSession = () => {
+    return (dispatch, getState) => {
+        if ( !getState().user.isConnected ) {
+            const stored_session = connectUtil.getSession();
+            if ( stored_session )
+                dispatch(connection(stored_session.login, stored_session.password));
+        }
+    };
+}
+
+export const linkedinConnection = () => {
+    return dispatch => {
+        dispatch(requestConnection());
+        userApi.linkedinConnection(response => {
+            console.debug("linkedin response");
+            if ( response.error )
+                dispatch(loginSuccess(response));
+            else
+                dispatch(receivedError());
+        });
+    }
 }

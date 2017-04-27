@@ -6,9 +6,10 @@ export default class Offers extends React.PureComponent {
         super(props);
     }
 
+
+
     render () {
         return (
-
             <main>
                 <div className="tape"></div>
                 <h2 className="uppercase text-center">Mes offres en cours</h2>

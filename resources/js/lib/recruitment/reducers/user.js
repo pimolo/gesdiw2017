@@ -4,8 +4,7 @@ const initialSate = {
     isConnected: false,
     isFetching: false,
     isCandidate: false,
-    isRecruter: false,
-    isEmployee: false,
+    isRecruiter: false,
     data: {},
     logout_error: false
 };
@@ -22,7 +21,9 @@ const user = (state = initialSate, action) => {
                 ...state,
                 isFetching: false,
                 isConnected: true,
-                data: action.data
+                data: action.data,
+                isRecruiter: action.data.isRecruiter || false,
+                isCandidate: action.data.isCandidate || false
             }
         case types.CONNECTION_REFUSED:
             return {

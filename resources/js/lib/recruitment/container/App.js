@@ -1,12 +1,14 @@
 import {connect} from "react-redux";
 import AppComponent from "../ui/App";
 
+import { restoreSession } from "../actions/userActions"
+
 const mapStateToProps = state => state;
 
 const mapDispatchToProps = dispatch => {
     return {
-        onReady: () => {
-
+        onReady() {
+            dispatch(restoreSession());
         }
     };
 }

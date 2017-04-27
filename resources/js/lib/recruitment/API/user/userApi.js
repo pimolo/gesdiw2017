@@ -20,6 +20,15 @@ export default class UserApi {
         });
     }
 
+    linkedinConnection(callback) {
+        $.ajax({
+            method: "GET",
+            url: base_url + "/auth/linkedin/login"
+        }).done( response => {
+            callback(response);
+        });
+    }
+
     logout(callback) {
         return $.ajax({
             method: "GET",
