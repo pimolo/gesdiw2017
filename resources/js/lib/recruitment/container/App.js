@@ -1,11 +1,9 @@
 import {connect} from "react-redux";
 import AppComponent from "../ui/App";
 
-const mapStateToProps = (state) => {
-    return state;
-}
+const mapStateToProps = state => state;
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
     return {
         onReady: () => {
 

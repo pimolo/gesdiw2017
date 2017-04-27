@@ -11,10 +11,52 @@ export default class App extends React.PureComponent {
 
     }
 
+
+    renderOffers() {
+        return (
+            <h2>OFFERS</h2>
+        )
+    }
+    renderMyOffers() {
+        return (
+            <h2>MY OFFERS</h2>
+        )
+    }
+    renderMyTests() {
+        return (
+            <h2>MY TESTS</h2>
+        )
+    }
+    renderMyProfile() {
+        return (
+            <h2>MY PROFILE</h2>
+        )
+    }
+
+    renderContent(){
+        switch (this.props.content.current) {
+          case "offers":
+              return this.renderOffers();
+          case "my_offers":
+              return this.renderMyOffers();
+          case "my_tests":
+              return this.renderMyTests();
+          case "my_profile":
+              return this.renderMyProfile();
+          default:
+              return this.renderOffers();
+        }
+    }
+
     render () {
         return (
             <div className="full-height">
-                <Navbar/>
+                <section id="gfi-talents-header-container">
+                    <Navbar/>
+                </section>
+                <section id="gfi-talents-content">
+                    {this.renderContent()}
+                </section>
             </div>
         );
     }

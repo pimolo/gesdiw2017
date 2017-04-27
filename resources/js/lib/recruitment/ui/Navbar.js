@@ -7,7 +7,12 @@ import ActionHome from 'material-ui/svg-icons/action/home';
 
 const styles = {
     navStyle: {
-        background: "#303F48"
+        background: "whocares",
+        backgroundColor: "whocares",
+        height: "10vh",
+        position: "fixed",
+        top: 0,
+        left: 0
     },
     mediumIcon : {
         height: 30,
@@ -36,9 +41,6 @@ export default class Navbar extends React.PureComponent {
         super(props);
     }
 
-    connectAction() {
-        console.log("coucou connect !");
-    }
     decoAction() {
         console.log("coucou deco !");
     }
@@ -54,7 +56,7 @@ export default class Navbar extends React.PureComponent {
             </IconButton>
         )
     }
-    
+
     renderLeftElementsConnected() {
         return (
             <div className="full-height display-flex-row">
@@ -68,28 +70,18 @@ export default class Navbar extends React.PureComponent {
             </div>
         );
     }
-    renderLeftElementsVisitor() {
-        return (
-            <div className="full-height display-flex-row">
-                {this.renderLogo()}
-                <div className="full-height display-flex-row" style={styles.centerLinksContainer}>
-                    <FlatButton labelStyle={styles.linkLabel} label="nos offres"/>
-                </div>
-            </div>
-        );
-    }
     renderLeftElements() {
         if ( this.props.user.isConnected )
             return this.renderLeftElementsConnected()
         else
-            return this.renderLeftElementsVisitor()
+            return this.renderLogo()
     }
 
     renderRightElementsConnected() {
         return (
             <FlatButton
                 labelStyle={styles.linkLabel}
-                onTouchTap={this.decoAction.bind(this)}
+                onTouchTap={this.props.logout}
                 label="deconnexion"
             />
         );
@@ -98,7 +90,7 @@ export default class Navbar extends React.PureComponent {
         return (
             <FlatButton
                 labelStyle={styles.linkLabel}
-                onTouchTap={this.connectAction.bind(this)}
+                onTouchTap={this.props.connection}
                 label="connexion"
             />
         );
@@ -131,4 +123,6 @@ Navbar.propTypes = {
     user: PropTypes.shape({
         isConnected: PropTypes.bool.isRequired
     }).isRequired,
+    connection: PropTypes.func.isRequired,
+    logout: PropTypes.func.isRequired
 };
