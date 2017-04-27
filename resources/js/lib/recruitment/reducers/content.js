@@ -26,6 +26,11 @@ const content = (state = initialSate, action) => {
                 ...state,
                 current: "my_profile"
             }
+        case types.VIEW_MY_CALENDAR:
+            return {
+                ...state,
+                current: "my_calendar"
+            }
         default:
             return state;
     }

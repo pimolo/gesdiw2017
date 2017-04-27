@@ -41,16 +41,12 @@ export default class Navbar extends React.PureComponent {
         super(props);
     }
 
-    decoAction() {
-        console.log("coucou deco !");
-    }
-
     renderLogo() {
         return (
             <IconButton
                 iconStyle={styles.mediumIcon}
                 style={styles.medium}
-                onTouchTap={this.props.toggleNavbar}
+                onTouchTap={this.props.displayLanding}
             >
                 <ActionHome color="white"/>
             </IconButton>
@@ -62,10 +58,10 @@ export default class Navbar extends React.PureComponent {
             <div className="full-height display-flex-row">
                 {this.renderLogo()}
                 <div className="full-height display-flex-row" style={styles.centerLinksContainer}>
-                    <FlatButton labelStyle={styles.linkLabel} label="mon profil"/>
-                    <FlatButton labelStyle={styles.linkLabel} label="mon calendrier"/>
-                    <FlatButton labelStyle={styles.linkLabel} label="mes offres"/>
-                    <FlatButton labelStyle={styles.linkLabel} label="mes tests"/>
+                    <FlatButton onTouchTap={this.props.displayMyProfile} labelStyle={styles.linkLabel} label="mon profil"/>
+                    <FlatButton onTouchTap={this.props.displayMyCalendar} labelStyle={styles.linkLabel} label="mon calendrier"/>
+                    <FlatButton onTouchTap={this.props.displayMyOffers} labelStyle={styles.linkLabel} label="mes offres"/>
+                    <FlatButton onTouchTap={this.props.displayMyTests} labelStyle={styles.linkLabel} label="mes tests"/>
                 </div>
             </div>
         );
@@ -124,5 +120,11 @@ Navbar.propTypes = {
         isConnected: PropTypes.bool.isRequired
     }).isRequired,
     connection: PropTypes.func.isRequired,
-    logout: PropTypes.func.isRequired
+    logout: PropTypes.func.isRequired,
+    displayOffers: PropTypes.func.isRequired,
+    displayMyOffers: PropTypes.func.isRequired,
+    displayMyTests: PropTypes.func.isRequired,
+    displayMyProfile: PropTypes.func.isRequired,
+    displayMyCalendar: PropTypes.func.isRequired,
+    displayLanding: PropTypes.func.isRequired
 };

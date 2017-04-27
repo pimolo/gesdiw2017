@@ -32,6 +32,11 @@ export default class App extends React.PureComponent {
             <h2>MY PROFILE</h2>
         )
     }
+    renderMyCalendar() {
+        return (
+            <h2>MY CALENDAR</h2>
+        )
+    }
 
     renderContent(){
         switch (this.props.content.current) {
@@ -43,6 +48,8 @@ export default class App extends React.PureComponent {
               return this.renderMyTests();
           case "my_profile":
               return this.renderMyProfile();
+          case "my_calendar":
+              return this.renderMyCalendar();
           default:
               return this.renderOffers();
         }

@@ -30,7 +30,7 @@ export const connection = (login, password) => {
         dispatch(requestConnection());
         userApi.connection(login, password,
             response => {
-                console.log("received server response on login", response)
+                console.debug("received server response on login", response)
                 if (response)
                     dispatch(loginSuccess(response));
                 else if (response.fail_ids)
@@ -60,7 +60,7 @@ export const logout = () => {
     return dispatch => {
         dispatch(requestLogout());
         userApi.logout(response => {
-            console.log("received server response on logout", response)
+            console.debug("received server response on logout", response)
             if (response)
                 dispatch(logoutSuccess());
             else if (response.failed)

@@ -8,6 +8,14 @@ import {
     connection,
     logout
 } from "../actions/userActions"
+import {
+    displayOffers,
+    displayMyOffers,
+    displayMyTests,
+    displayMyProfile,
+    displayLanding,
+    displayMyCalendar
+} from "../actions/contentActions"
 
 const mapStateToProps = state => state;
 
@@ -18,6 +26,24 @@ const mapDispatchToProps = dispatch => {
         },
         logout() {
             dispatch(logout());
+        },
+        displayOffers() {
+            dispatch(displayOffers());
+        },
+        displayMyOffers() {
+            dispatch(displayMyOffers());
+        },
+        displayMyTests() {
+            dispatch(displayMyTests());
+        },
+        displayMyProfile() {
+            dispatch(displayMyProfile());
+        },
+        displayLanding() {
+            dispatch(displayLanding());
+        },
+        displayMyCalendar() {
+            dispatch(displayMyCalendar());
         }
     };
 }

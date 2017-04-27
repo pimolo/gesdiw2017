@@ -20,3 +20,13 @@ export const displayMyProfile = () => {
         type: types.VIEW_MY_PROFILE
     }
 };
+export const displayLanding = () => {
+    return {
+        type: types.VIEW_OFFERS
+    }
+}
+export const displayMyCalendar = () => {
+    return {
+        type: types.VIEW_MY_CALENDAR
+    }
+}
