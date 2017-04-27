@@ -13,7 +13,9 @@ const styles = {
         height: "10vh",
         position: "fixed",
         top: 0,
-        left: 0
+        left: 0,
+        paddingLeft: "34px",
+        paddingBottom: "5px"
     },
     mediumIcon : {
         height: 30,
@@ -21,8 +23,13 @@ const styles = {
         cursor: "pointer"
     },
     medium: {
-        width: 42,
-        height: 42,
+        width: "auto",
+        height: "auto",
+        cursor: "pointer"
+    },
+    logo:{
+        width: "auto",
+        height: "100%",
         cursor: "pointer"
     },
     linkLabel: {
@@ -44,13 +51,8 @@ export default class Navbar extends React.PureComponent {
 
     renderLogo() {
         return (
-            <IconButton
-                iconStyle={styles.mediumIcon}
-                style={styles.medium}
-                onTouchTap={this.props.displayLanding}
-            >
-                <ActionHome color="white"/>
-            </IconButton>
+            <img style={styles.logo}
+            onTouchTap={this.props.displayLanding} src="resources/img/logo_gfi_talents.png"/>
         )
     }
 
