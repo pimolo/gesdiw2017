@@ -9,4 +9,5 @@
     border-radius: 2px;
     z-index: 1;
     padding: 10px;
+    max-width: 960px;
 }
