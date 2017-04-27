@@ -1,0 +1,26 @@
+.button-enabled {
+    background-color: orange;
+}
+.button-disabled {
+    background-color: grey;
+}
+form p {
+    float: right;
+    clear: both;
+}
+form {
+    width: 600px;
+    margin: 0 auto;
+    text-transform: uppercase;
+}
+.submit-button {
+    background-color: orange;
+    color: white;
+    text-transform: uppercase;
+    width: 100px;
+    padding: 5px;
+    border: none;
+}
+legend {
+    font-size: 1.2em;
+}

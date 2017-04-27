@@ -17,3 +17,7 @@
 .text-uppercase {
     text-transform: uppercase;
 }
+
+legend {
+    font-size: 1.2em;
+}

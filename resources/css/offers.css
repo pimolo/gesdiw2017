@@ -63,16 +63,6 @@ margin: 10px auto;
 
 }
 
-.tape {
-
-background-color: orange;
-
-height: 10px;
-
-width: 100%;
-
-}
-
 tr:nth-child(even) {
 
 background-color: grey;
@@ -89,4 +79,8 @@ td, th {
 
 padding: 0px 10px;
 
+}
+
+.head-row {
+    border-bottom: 3px solid orange;
 }
