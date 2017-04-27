@@ -23,7 +23,7 @@ export default class UserApi {
     logout(callback) {
         return $.ajax({
             method: "GET",
-            url: base_url
+            url: base_url + "/auth/logout"
         }).done( response => {
             callback(response);
         });

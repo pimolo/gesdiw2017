@@ -31,12 +31,10 @@ export const connection = (login, password) => {
         userApi.connection(login, password,
             response => {
                 console.debug("received server response on login", response)
-                if (response)
-                    dispatch(loginSuccess(response));
-                else if (response.fail_ids)
-                    dispatch(loginRefused(response));
-                else
+                if (response.error)
                     dispatch(receivedError());
+                else
+                    dispatch(loginSuccess(response));
         });
     };
 };
@@ -63,8 +61,6 @@ export const logout = () => {
             console.debug("received server response on logout", response)
             if (response)
                 dispatch(logoutSuccess());
-            else if (response.failed)
-                dispatch(logoutRefused());
             else
                 dispatch(receivedError());
         });

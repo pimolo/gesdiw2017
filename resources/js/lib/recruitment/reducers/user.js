@@ -21,7 +21,8 @@ const user = (state = initialSate, action) => {
             return {
                 ...state,
                 isFetching: false,
-                isConnected: true
+                isConnected: true,
+                data: action.data
             }
         case types.CONNECTION_REFUSED:
             return {
