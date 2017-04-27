@@ -1,9 +1,7 @@
 import * as types from "../actions/connectionTypes";
+import connectionUtil from "../utils/connection";
 
-const login_regex =  /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-const isLoginValid = login => login_regex.test(login);
-const isPasswordValid = password => password.length > 3;
+const connectUtil = new connectionUtil();
 
 const initialSate = {
     login: "",
@@ -18,13 +16,13 @@ const connection = (state = initialSate, action) => {
             return {
                 ...state,
                 login: action.val,
-                isLoginValid: isLoginValid(action.val)
+                isLoginValid: connectUtil.isLoginValid(action.val)
             }
         case types.CHANGE_PASSWORD_INPUT:
             return {
                 ...state,
                 password: action.val,
-                isPasswordValid: isPasswordValid(action.val)
+                isPasswordValid: connectUtil.isPasswordValid(action.val)
             }
         default:
             return state;

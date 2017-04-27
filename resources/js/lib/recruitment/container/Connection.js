@@ -6,8 +6,12 @@ import {
     changePasswordInput
 } from "../actions/connectionActions";
 import {
-    connection
+    connection,
+    linkedinConnection
 } from "../actions/userActions";
+import {
+    displayLanding
+} from "../actions/contentActions"
 
 const mapStateToProps = state => state;
 
@@ -21,6 +25,12 @@ const mapDispatchToProps = dispatch => {
         },
         loginRequest(login, password) {
             dispatch(connection(login, password))
+        },
+        displayLanding() {
+            dispatch(displayLanding())
+        },
+        linkedinConnection() {
+            dispatch(linkedinConnection())
         }
     };
 }
