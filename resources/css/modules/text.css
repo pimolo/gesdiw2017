@@ -76,3 +76,17 @@ span.no-decoration-hover:hover{
 .title-8{
     font-size: 10px;
 }
+
+
+h2, h3 {
+    padding: 20px 0;
+    font-family: 'Istok Web', sans-serif;
+}
+h2 {
+    font-size: 1.5em;
+}
+h3 {
+    margin-top: 0;
+    padding-top: 10px;
+    font-family: 'Istok Web', sans-serif;
+}

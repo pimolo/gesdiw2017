@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="resources/css/container.css">
+    <link rel="stylesheet" href="resources/css/reset.css">
+    <link rel="stylesheet" href="resources/css/modules/position.css">
+    <link rel="stylesheet" href="resources/css/modules/size.css">
+    <link rel="stylesheet" href="resources/css/modules/text.css">
+    <link rel="stylesheet" href="resources/css/offers.css">
+    <title>Document</title>
+    <script src="https://use.fontawesome.com/e3ebf4054a.js"></script>
+</head>
+<body>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Istok+Web|Work+Sans');
+        body {
+            font-family: 'Work Sans', sans-serif;
+        }
+        article {
+            width: 20vw;
+            height: 300px;
+            border: 1px black solid;
+            margin: 50px;
+            display: inline-block;
+        }
+        .text-uppercase {
+            text-transform: uppercase;
+        }
+        .text-align-center {
+            text-align: center;
+        }
+        .bold {
+            font-weight: bold;
+        }
+        .text-valid {
+            color: green;
+        }
+        .text-invalid {
+            color: red;
+        }
+        .offer-element {
+            margin: 10px auto;
+        }
+        tr:nth-child(even) {
+            background-color: grey;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        td, th {
+            padding: 0px 10px;
+        }
+    </style>
+    <div class="tape"></div>
+    <main>
+    <h2 class="text-uppercase text-align-center">Mes offres en cours</h2>
+    <h3 class="text-uppercase">Mes candidatures</h2>
+    <article class="text-align-center">
+        <p class="test-card-header text-uppercase">
+            poste
+        </p>
+        <p class="offer-element">
+            address
+        </p>
+        <p class="offer-element">
+            Contrat : <span class="bold">CDI</span>
+        </p>
+        <p class="offer-element">
+            tests
+        </p>
+    </article>
+    <article class="text-align-center">
+        <p class="test-card-header text-uppercase">
+            poste
+        </p>
+        <p class="offer-element">
+            address
+        </p>
+        <p class="offer-element">
+            Contrat : <span class="bold">CDI</span>
+        </p>
+        <p class="offer-element">
+            test java : <span class="text-invalid">Non validé</span>
+        </p>
+    </article>
+    <h3 class="text-uppercase">Autres offres dans mon domaine</h2>
+    <table class="text-uppercase">
+        <thead>
+            <tr class="head-row">
+                <th>Offres</th>
+                <th>Ville</th>
+                <th>Contrat</th>
+                <th>Voir cette offre</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Développeur IOS</td>
+                <td>Paris</td>
+                <td>CDI</td>
+                <td><i class="fa fa-search" aria-hidden="true"></i></td>
+            </tr><tr>
+                <td>Développeur Web</td>
+                <td>Paris</td>
+                <td>CDI</td>
+                <td><i class="fa fa-search" aria-hidden="true"></i></td>
+            </tr>
+        </tbody>
+    </table>
+    </main>
+</body>
+</html>
