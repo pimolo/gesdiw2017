@@ -13,6 +13,10 @@ export default class App extends React.PureComponent {
         super(props);
     }
 
+    componentDidMount() {
+        this.props.onReady();
+    }
+
     renderOffers() {
         return (
             <Offers/>
