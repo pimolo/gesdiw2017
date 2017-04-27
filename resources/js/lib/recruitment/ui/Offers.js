@@ -1,17 +1,28 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import RaisedButton from 'material-ui/RaisedButton';
+
+const styles = {
+    validConnect: {
+        marginTop: "20px"
+    }
+};
 
 export default class Offers extends React.PureComponent {
     constructor(props) {
         super(props);
     }
 
-
-
     render () {
         return (
             <main className="card">
-                <h2 className="uppercase text-center">Mes offres</h2>
+                <h2 className="uppercase text-center medium-grey title-1">Mes offres</h2>
+                <RaisedButton
+                    style={styles.validConnect}
+                    label="MON CALENDRIER"
+                    labelPosition="before"
+                />
+
                 <h3 className="uppercase">Mes candidatures</h3>
                 <article className="text-center">
                     <p className="test-card-header uppercase">poste</p>

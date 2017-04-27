@@ -71,7 +71,7 @@ export default class App extends React.PureComponent {
         return (
             <div className="full-height">
                 <section id="gfi-talents-header-container" className="relative">
-                    <img className="absolute full-width img-cover" src="http://hackathon.gfi/resources/img/header-background.jpeg" />
+                    <img className="absolute full-width img-cover" src="resources/img/header-background.jpeg" />
                     <Navbar/>
                 </section>
                 <section id="gfi-talents-content">

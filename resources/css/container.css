@@ -34,5 +34,14 @@ main {
     padding: 10px;
 }
 .test-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-flow: row wrap;
     margin-top: 60px;
+}
+.gfi-table-no-select tbody tr > td{
+    padding-top: 24px;
 }

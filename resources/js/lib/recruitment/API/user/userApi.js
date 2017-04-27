@@ -1,6 +1,6 @@
 import $ from "jquery";
 
-const base_url = "http://gfi-talents.azurewebsites.net/api/v1";
+const base_url = "http://51.141.26.63/api/v1";
 
 export default class UserApi {
     constructor () {

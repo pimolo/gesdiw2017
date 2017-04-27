@@ -4,3 +4,9 @@
 .dark-grey{
     color: #303F48;
 }
+.medium-grey{
+    color: rgba(48, 53, 72, .8);
+}
+.color-success{
+    color: green;
+}
