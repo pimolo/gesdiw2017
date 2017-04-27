@@ -9,6 +9,7 @@ const styles = {
     navStyle: {
         background: "whocares",
         backgroundColor: "whocares",
+        boxShadow: "whocares",
         height: "10vh",
         position: "fixed",
         top: 0,

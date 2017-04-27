@@ -26,6 +26,7 @@ const mapDispatchToProps = dispatch => {
         },
         logout() {
             dispatch(logout());
+            dispatch(displayLanding());
         },
         displayOffers() {
             dispatch(displayOffers());
