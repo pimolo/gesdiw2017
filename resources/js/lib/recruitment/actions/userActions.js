@@ -65,8 +65,10 @@ export const logout = () => {
         dispatch(requestLogout());
         userApi.logout(response => {
             console.debug("received server response on logout", response)
-            if (response)
+            if (response) {
                 dispatch(logoutSuccess());
+                connectUtil.killSession();
+            }
             else
                 dispatch(receivedError());
         });
@@ -81,4 +83,17 @@ export const restoreSession = () => {
                 dispatch(connection(stored_session.login, stored_session.password));
         }
     };
+}
+
+export const linkedinConnection = () => {
+    return dispatch => {
+        dispatch(requestConnection());
+        userApi.linkedinConnection(response => {
+            console.debug("linkedin response");
+            if ( response.error )
+                dispatch(loginSuccess(response));
+            else
+                dispatch(receivedError());
+        });
+    }
 }

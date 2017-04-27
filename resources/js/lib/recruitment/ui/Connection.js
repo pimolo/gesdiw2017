@@ -7,7 +7,8 @@ import Offers from '../container/Offers';
 
 const styles = {
     container: {
-        maxWidth: '960px'
+        maxWidth: '960px',
+        minHeight: '70vh'
     },
     inputContainer: {
         maxWidth: '500px',
@@ -18,6 +19,17 @@ const styles = {
     },
     borderStyle: {
         borderColor: '#F07F0A'
+    },
+    validConnect: {
+        marginTop: "20px"
+    },
+    logoLinkedin: {
+        width: "65px",
+        height: "auto",
+        marginTop: "12px"
+    },
+    marginPar: {
+        marginTop: "30px"
     }
 };
 
@@ -37,22 +49,21 @@ export default class Connection extends React.PureComponent {
         this.passwordError = !this.props.connection.isPasswordValid;
     }
     handleConnectionValidation = () => {
-        if ( this.props.connection.isLoginValid && this.props.connection.isPasswordValid ) {
-            console.debug("tudu buem !");
+        if ( this.props.connection.isLoginValid && this.props.connection.isPasswordValid )
             this.props.loginRequest(this.props.connection.login, this.props.connection.password);
-        }
     }
+
     getLoginError() {
         return this.loginError ? "Mauvais format d'email" : "";
     }
     getPasswordError() {
-        return this.passwordError ? "4 caractères minimum !" : "";
+        return this.passwordError ? "3 caractères minimum !" : "";
     }
 
     renderConnectionTemplate() {
         return (
-            <div style={styles.container} className="margin-auto card full-width display-flex-column card-border orange">
-                <h2 className="gfi-title title-1 uppercase">Connexion</h2>
+            <div style={styles.container} className="margin-auto card full-width display-flex-column space-between card-border orange">
+                <h2 className="margin-auto gfi-title title-1 uppercase">Connexion</h2>
                 <div style={styles.inputContainer} className="margin-auto full-width display-flex-column">
                     <TextField
                         hintText="Votre email"
@@ -66,7 +77,7 @@ export default class Connection extends React.PureComponent {
                     />
                     <TextField
                         hintText="Mot de passe"
-                        floatingLabelText="4 caractères minimum"
+                        floatingLabelText="3 caractères minimum"
                         type="password"
                         floatingLabelFocusStyle={styles.colorStyle}
                         hintStyle={styles.colorStyle}
@@ -75,12 +86,22 @@ export default class Connection extends React.PureComponent {
                         onChange={this.handlePasswordChange}
                     />
                     <RaisedButton
+                        style={styles.validConnect}
                         label="Valider"
                         labelPosition="before"
                         onTouchTap={this.handleConnectionValidation}
                     />
                 </div>
-
+                <div style={styles.inputContainer} className="margin-auto full-width display-flex-column">
+                    <p style={styles.marginPar} className="text-center title-4 full-width uppercase dark-grey">Lier mon compte linkedIN</p>
+                    <img src="resources/img/logo_linkedin.jpg" className="margin-auto" style={styles.logoLinkedin} />
+                    <RaisedButton
+                        style={styles.validConnect}
+                        label="Connecter"
+                        labelPosition="before"
+                        onTouchTap={this.props.linkedinConnection}
+                    />
+                </div>
             </div>
         );
     }
@@ -89,7 +110,9 @@ export default class Connection extends React.PureComponent {
         if ( !this.props.user.isConnected ) {
             if ( this.props.user.isFetching ) {
                 return (
-                    <CircularProgress size={80} thickness={5} />
+                    <div className="full-width full-height relative">
+                        <CircularProgress size={80} thickness={5} />
+                    </div>
                 );
             }
             else
@@ -111,5 +134,6 @@ Connection.propTypes = {
     }).isRequired,
     changeLoginInput: PropTypes.func.isRequired,
     changePasswordInput: PropTypes.func.isRequired,
-    loginRequest: PropTypes.func.isRequired
+    loginRequest: PropTypes.func.isRequired,
+    linkedinConnection: PropTypes.func.isRequired
 };
