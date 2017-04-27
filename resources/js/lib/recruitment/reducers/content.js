@@ -31,6 +31,11 @@ const content = (state = initialSate, action) => {
                 ...state,
                 current: "my_calendar"
             }
+        case types.VIEW_CONNECTION:
+            return {
+                ...state,
+                current: "connection"
+            }
         default:
             return state;
     }

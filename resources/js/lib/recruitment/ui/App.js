@@ -1,40 +1,46 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import Navbar from "../container/Navbar";
+import Offers from "../container/Offers";
+import MyOffers from "../container/MyOffers";
+import MyTests from "../container/MyTests";
+import MyProfile from "../container/MyProfile.js";
+import MyCalendar from "../container/MyCalendar";
+import Connection from "../container/Connection";
 
 export default class App extends React.PureComponent {
     constructor(props) {
         super(props);
     }
 
-    componentWillMount () {
-
-    }
-
-
     renderOffers() {
         return (
-            <h2>OFFERS</h2>
+            <Offers/>
         )
     }
     renderMyOffers() {
         return (
-            <h2>MY OFFERS</h2>
+            <MyOffers/>
         )
     }
     renderMyTests() {
         return (
-            <h2>MY TESTS</h2>
+            <MyTests/>
         )
     }
     renderMyProfile() {
         return (
-            <h2>MY PROFILE</h2>
+            <MyProfile/>
         )
     }
     renderMyCalendar() {
         return (
-            <h2>MY CALENDAR</h2>
+            <MyCalendar/>
+        )
+    }
+    renderConnection() {
+        return (
+            <Connection/>
         )
     }
 
@@ -50,6 +56,8 @@ export default class App extends React.PureComponent {
               return this.renderMyProfile();
           case "my_calendar":
               return this.renderMyCalendar();
+          case "connection":
+              return this.renderConnection();
           default:
               return this.renderOffers();
         }

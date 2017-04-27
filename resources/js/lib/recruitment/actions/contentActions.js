@@ -30,3 +30,8 @@ export const displayMyCalendar = () => {
         type: types.VIEW_MY_CALENDAR
     }
 }
+export const displayLogin = () => {
+    return {
+        type: types.VIEW_CONNECTION
+    }
+}

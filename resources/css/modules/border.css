@@ -1,0 +1,6 @@
+.card-border{
+    border-top: 6px solid transparent;
+}
+.card-border.orange{
+    border-top-color: #F07F0A;
+}

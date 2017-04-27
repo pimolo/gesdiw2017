@@ -87,7 +87,7 @@ export default class Navbar extends React.PureComponent {
         return (
             <FlatButton
                 labelStyle={styles.linkLabel}
-                onTouchTap={this.props.connection}
+                onTouchTap={this.props.displayLogin}
                 label="connexion"
             />
         );
@@ -121,7 +121,7 @@ Navbar.propTypes = {
         isConnected: PropTypes.bool.isRequired
     }).isRequired,
     connection: PropTypes.func.isRequired,
-    logout: PropTypes.func.isRequired,
+    displayLogin: PropTypes.func.isRequired,
     displayOffers: PropTypes.func.isRequired,
     displayMyOffers: PropTypes.func.isRequired,
     displayMyTests: PropTypes.func.isRequired,

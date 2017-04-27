@@ -14,6 +14,7 @@ import {
     displayMyTests,
     displayMyProfile,
     displayLanding,
+    displayLogin,
     displayMyCalendar
 } from "../actions/contentActions"
 
@@ -45,6 +46,9 @@ const mapDispatchToProps = dispatch => {
         },
         displayMyCalendar() {
             dispatch(displayMyCalendar());
+        },
+        displayLogin() {
+            dispatch(displayLogin());
         }
     };
 }
