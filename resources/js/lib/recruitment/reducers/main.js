@@ -1,10 +1,14 @@
 import {combineReducers} from "redux";
-import candidate from "./candidate";
+import user from "./user";
 import navbar from "./navbar";
+import content from "./content";
+import connection from "./connection";
 
 const Main = combineReducers({
-    candidate,
-    navbar
+    user,
+    navbar,
+    connection,
+    content
 });
 
 export default Main;

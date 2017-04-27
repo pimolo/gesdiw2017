@@ -1,0 +1,19 @@
+.full-width{
+    width: 100%;
+}
+.full-height{
+    height: 100%;
+}
+.full-height-i{
+     height: 100% !important;
+ }
+.height-auto{
+    height: auto;
+}
+.height-0{
+    height: 0;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}

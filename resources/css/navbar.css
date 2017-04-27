@@ -1,0 +1,17 @@
+#gfi-talents-header-container{
+    height: 30vh;
+}
+
+.gfi-talents-navbar{
+    background: #000; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#000 20%, transparent); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#000 20%, transparent); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#000 20%, transparent); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#000 20%, transparent); /* Standard syntax */
+    opacity: .8;
+}
+.gfi-talents-navbar:hover,
+.gfi-talents-navbar:focus,
+.gfi-talents-navbar:active{
+    opacity: 1;
+}
