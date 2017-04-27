@@ -1,8 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Istok+Web|Work+Sans');
+
 #gfi-talents-content{
     min-height: 80vh;
     background: rgba(48, 53, 72, .2);
 }
 
+body {
+    font-family: 'Work Sans', sans-serif;
+    background-color: #edeae6;
+}
 main {
     box-sizing: border-box;
     width: 1000px;

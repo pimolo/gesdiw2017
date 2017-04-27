@@ -90,3 +90,10 @@ h3 {
     padding-top: 10px;
     font-family: 'Istok Web', sans-serif;
 }
+
+.text-valid {
+    color: green;
+}
+.text-invalid {
+    color: red;
+}
