@@ -60,6 +60,24 @@ const user = (state = initialSate, action) => {
                     offers: action.all_offers
                 }
             }
+        case types.ADD_INTEREST_SUCCESS:
+            return {
+                ...state,
+                isFetching: false,
+                data: {
+                    ...state.data,
+                    offers: action.all_offers
+                }
+            }
+        case types.RETREIVE_OFFERS_SUCCESS:
+            return {
+                ...state,
+                isFetching: false,
+                data: {
+                    ...state.data,
+                    offers: action.offers
+                }
+            }
         default:
             return state;
     }

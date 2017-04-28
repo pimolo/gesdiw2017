@@ -39,6 +39,13 @@ const retreiveTokenSuccess = token => {
     }
 }
 
+const retreiveOffers = offers => {
+    return {
+        type: types.RETREIVE_OFFERS_SUCCESS,
+        offers
+    }
+}
+
 export const getMe = token => {
     return dispatch => {
         dispatch(requestConnection());
@@ -48,6 +55,14 @@ export const getMe = token => {
                 dispatch(logout());
             }
             else {
+                dispatch(requestConnection());
+                userApi.getApplies(token, res => {
+                    dispatch(loginSuccess(response));
+                    if ( res.error ) {
+                        console.debug("couldn't fetch user applies", res)
+                    } else
+                        dispatch(retreiveOffers(res));
+                })
                 dispatch(loginSuccess(response))
             }
         });
@@ -119,7 +134,7 @@ export const linkedinConnection = () => {
 
 const offerAddedToInterest = all_offers => {
     return {
-        type: types.ADD_INTEREST_SUCCES,
+        type: types.ADD_INTEREST_SUCCESS,
         all_offers
     };
 };

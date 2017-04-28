@@ -17,6 +17,8 @@ export default class UserApi {
             }
         }).done( response => {
             callback(response);
+        }).fail( response => {
+            callback({error: response})
         });
     }
 
@@ -26,6 +28,8 @@ export default class UserApi {
             url: base_url + "/linkedin/login"
         }).done( response => {
             callback(response);
+        }).fail( response => {
+            callback({error: response})
         });
     }
 
@@ -39,7 +43,20 @@ export default class UserApi {
         }).done( response => {
             callback(response);
         }).fail( response => {
-            // console.log("ffs", response);
+            callback({error: response})
+        });
+    }
+
+    getApplies(token, callback) {
+        $.ajax({
+            method: "GET",
+            url: base_url + "/users/applies",
+            beforeSend(xhr) {
+                xhr.setRequestHeader('Authorization', 'JWT ' + token);
+            }
+        }).done( response => {
+            callback(response);
+        }).fail( response => {
             callback({error: response})
         });
     }
@@ -53,6 +70,8 @@ export default class UserApi {
             }
         }).done( response => {
             callback(response);
+        }).fail( response => {
+            callback({error: response})
         });
     }
 }
