@@ -33,3 +33,15 @@ export const getAllOffers = () => {
         });
     }
 }
+
+export const display_offer = offer => {
+    return {
+        type: types.SHOW_OFFER,
+        offer
+    };
+}
+export const hide_offer = () => {
+    return {
+        type: types.HIDE_OFFER
+    };
+}

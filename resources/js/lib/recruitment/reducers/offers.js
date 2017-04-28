@@ -3,7 +3,8 @@ import * as types from "../actions/offersTypes";
 const initialSate = {
     data: [],
     isFetching: false,
-    fetch_error: false
+    fetch_error: false,
+    displaid_offer: false
 };
 
 const content = (state = initialSate, action) => {
@@ -26,6 +27,16 @@ const content = (state = initialSate, action) => {
                 isFetching: false,
                 fetch_error: false,
                 data: Array.from(action.data)
+            }
+        case types.SHOW_OFFER:
+            return {
+                ...state,
+                displaid_offer: action.offer
+            }
+        case types.HIDE_OFFER:
+            return {
+                ...state,
+                displaid_offer: false
             }
         default:
             return state;

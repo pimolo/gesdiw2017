@@ -1,23 +1,23 @@
 import {connect} from "react-redux";
-import OffersComponent from "../ui/Offers";
+import OfferModalComponent from "../ui/OfferModal";
 
 import {
-    display_offer
+    hide_offer
 } from "../actions/offersActions";
 
 const mapStateToProps = state => state;
 
 const mapDispatchToProps = dispatch => {
     return {
-        display_offer(offer) {
-            dispatch(display_offer(offer))
+        hide_offer() {
+            dispatch(hide_offer())
         }
     };
 }
 
-const Offers = connect(
+const OfferModal = connect(
     mapStateToProps,
     mapDispatchToProps
-)(OffersComponent);
+)(OfferModalComponent);
 
-export default Offers;
+export default OfferModal;

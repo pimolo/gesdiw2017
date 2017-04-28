@@ -1,3 +1,5 @@
 export const REQUEST_ONGOING = "REQUEST_ONGOING";
 export const RECEIVED_ERROR = "RECEIVED_ERROR";
 export const RECEIVED_ALL_OFFERS = "RECEIVED_ALL_OFFERS";
+export const SHOW_OFFER = "SHOW_OFFER";
+export const HIDE_OFFER = "HIDE_OFFER";
