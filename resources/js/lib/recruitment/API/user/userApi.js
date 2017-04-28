@@ -41,10 +41,13 @@ export default class UserApi {
         });
     }
 
-    logout(callback) {
+    logout(token, callback) {
         return $.ajax({
             method: "GET",
-            url: base_url + "/logout"
+            url: base_url + "/logout",
+            beforeSend(xhr) {
+                xhr.setRequestHeader('Authorization', 'JWT ' + token);
+            }
         }).done( response => {
             callback(response);
         });

@@ -15,4 +15,7 @@ export default class OffersApi {
         });
     }
 
+    // /suggested,  with user bearer
+    // /users/suggested,  with user bearer  --> classement
+
 }

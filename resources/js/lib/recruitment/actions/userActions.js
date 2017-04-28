@@ -19,7 +19,6 @@ const requestConnection = () => {
     }
 };
 const loginSuccess = data => {
-    console.debug("loginSucces: ", data);
     return {
         type: types.CONNECTION_SUCCESS,
         data
@@ -45,7 +44,6 @@ export const getMe = token => {
             if ( response.error )
                 dispatch(receivedError(response.error))
             else {
-                console.debug("received getMe response", response);
                 dispatch(loginSuccess(response))
             }
         });
@@ -85,10 +83,9 @@ const logoutRefused = () => {
     }
 };
 export const logout = () => {
-    return dispatch => {
+    return (dispatch, getState) => {
         dispatch(requestLogout());
-        userApi.logout(response => {
-            console.debug("received server response on logout", response)
+        userApi.logout(getState().user.token, response => {
             if (response) {
                 dispatch(logoutSuccess());
                 connectUtil.killSession();
@@ -115,7 +112,6 @@ export const linkedinConnection = () => {
     return dispatch => {
         dispatch(requestConnection());
         userApi.linkedinConnection(response => {
-            console.debug("linkedin response");
             if ( response.error )
                 dispatch(loginSuccess(response));
             else
