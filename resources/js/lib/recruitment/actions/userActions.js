@@ -83,16 +83,9 @@ const logoutRefused = () => {
     }
 };
 export const logout = () => {
-    return (dispatch, getState) => {
-        dispatch(requestLogout());
-        userApi.logout(getState().user.token, response => {
-            if (response) {
-                dispatch(logoutSuccess());
-                connectUtil.killSession();
-            }
-            else
-                dispatch(receivedError());
-        });
+    return dispatch => {
+        connectUtil.killSession();
+        dispatch(logoutSuccess());
     };
 }
 
