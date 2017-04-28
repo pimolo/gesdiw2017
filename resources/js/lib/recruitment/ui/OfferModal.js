@@ -20,7 +20,9 @@ export default class OfferModal extends React.PureComponent {
     }
 
     isOfferInInterest(offer) {
-        const matched_offer = this.props.user.data.offers.find( _offer => _offer._id === offer._id );
+        if ( !this.props.user.isConnected )
+            return false;
+        const matched_offer = this.props.user.data.offers.find( _offer => _offer.offerId._id === offer._id );
         console.debug("matched_offer", matched_offer);
         return ( typeof matched_offer !== "undefined"  ) ? true : false;
     }
@@ -67,17 +69,31 @@ export default class OfferModal extends React.PureComponent {
                     />
                 );
             } else {
-                actions.push(
-                    <FlatButton
-                      label="Intéressé"
-                      primary={true}
-                      keyboardFocused={true}
-                      onTouchTap={() => {
-                        this.props.addOfferToInterests(offer);
-                        this.props.hide_offer();
-                      }}
-                    />
-                );
+                if ( this.props.user.isConnected ) {
+                    actions.push(
+                        <FlatButton
+                          label="Intéressé"
+                          primary={true}
+                          keyboardFocused={true}
+                          onTouchTap={() => {
+                            this.props.addOfferToInterests(offer);
+                            this.props.hide_offer();
+                          }}
+                        />
+                    );
+                } else {
+                    actions.push(
+                        <FlatButton
+                          label="Connexion"
+                          primary={true}
+                          keyboardFocused={true}
+                          onTouchTap={() => {
+                            this.props.hide_offer();
+                            this.props.displayLogin();
+                          }}
+                        />
+                    );
+                }
             }
             return (
                 <Dialog
@@ -97,5 +113,6 @@ export default class OfferModal extends React.PureComponent {
 }
 OfferModal.propTypes = {
     hide_offer: PropTypes.func.isRequired,
-    addOfferToInterests: PropTypes.func.isRequired
+    addOfferToInterests: PropTypes.func.isRequired,
+    displayLogin: PropTypes.func.isRequired
 };

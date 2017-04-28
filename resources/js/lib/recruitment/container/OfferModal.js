@@ -7,6 +7,10 @@ import {
 import {
     addOfferToInterests
 } from "../actions/userActions";
+import {
+    displayLogin
+} from "../actions/contentActions"
+
 
 const mapStateToProps = state => state;
 
@@ -17,6 +21,9 @@ const mapDispatchToProps = dispatch => {
         },
         addOfferToInterests(offer) {
             dispatch(addOfferToInterests(offer));
+        },
+        displayLogin() {
+            dispatch(displayLogin());
         }
     };
 }

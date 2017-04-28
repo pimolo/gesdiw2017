@@ -27,6 +27,22 @@ export default class OffersApi {
         });
     }
 
+    getSuggestedOffers(token, callback) {
+        $.ajax({
+            method: "GET",
+            url: base_url + "/suggested",
+            beforeSend(xhr) {
+                xhr.setRequestHeader('Authorization', 'JWT ' + token);
+            }
+        }).done( response => {
+            callback(response);
+        }).fail( error => {
+            callback({error})
+        });
+    }
+
+
+
     // /suggested,  with user bearer
     // /users/suggested,  with user bearer  --> classement
 
