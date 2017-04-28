@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="resources/css/reset.css">
+    <link rel="stylesheet" href="resources/css/container.css">
+    <link rel="stylesheet" href="resources/css/modules/position.css">
+    <link rel="stylesheet" href="resources/css/modules/size.css">
+    <link rel="stylesheet" href="resources/css/modules/text.css">
+    <link rel="stylesheet" href="resources/css/offers.css">
+    <title>Document</title>
+    <!--<script src="https://use.fontawesome.com/e3ebf4054a.js"></script>-->
+</head>
+<body>
+    <style>
+        article {
+            width: 20vw;
+            height: 300px;
+            border: 1px black solid;
+            margin: 50px;
+            display: inline-block;
+        }
+        .text-uppercase {
+            text-transform: uppercase;
+        }
+        .text-align-center {
+            text-align: center;
+        }
+        .bold {
+            font-weight: bold;
+        }
+        .text-valid {
+            color: green;
+        }
+        .text-invalid {
+            color: red;
+        }
+        .offer-element {
+            margin: 10px auto;
+        }
+        tr:nth-child(even) {
+            background-color: grey;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        td, th {
+            padding: 0px 10px;
+        }
+        .column {
+            display: inline-block;
+            width: 49%;
+        }
+        .column h3 {
+            text-align: center;
+        }
+        .offer-label {
+            font-weight: bold;
+        }
+    </style>
+    <div class="tape"></div>
+    <main>
+    <h2 class="text-uppercase text-align-center">Mes offres</h2>
+    <select name="offer" id="offer">
+        <option value="1">Ingénieur PHP5</option>
+    </select>
+    <div class="columns">
+    <div class="column">
+        <h3>Classement des candidats</h3>
+        <table class="text-uppercase">
+        <thead>
+            <tr class="head-row">
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Andrieux</td>
+                <td>Rémi</td>
+                <td>175/200</td>
+            </tr>
+            <tr>
+                <td>Andrieux</td>
+                <td>Rémi</td>
+                <td>175/200</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    </div>
+    <div class="column">
+        <h3>L'offre</h3>
+        <p>Ingénieur études et développement PHP5</p>
+        <div class="buttons"></div>
+        <div class="offer">
+            <p><span class="offer-label">Localisation :</span> Adresse</p>
+            <p><span class="offer-label">Contrat :</span> CDI</p>
+            <p>
+                <span class="offer-label">Description de la mission :</span><br />
+                Mission
+            </p>
+            
+        </div>
+    </div>
+    </div>
+    </main>
+</body>
+</html>
