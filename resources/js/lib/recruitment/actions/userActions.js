@@ -19,6 +19,7 @@ const requestConnection = () => {
     }
 };
 const loginSuccess = data => {
+    console.debug("loginSucces: ", data);
     return {
         type: types.CONNECTION_SUCCESS,
         data
@@ -30,16 +31,39 @@ const loginRefused = () => {
     }
 };
 
+const retreiveTokenSuccess = token => {
+    return {
+        type: types.TOKEN_RETREIVED,
+        token
+    }
+}
+
+export const getMe = token => {
+    return dispatch => {
+        dispatch(requestConnection());
+        userApi.getMe(token, response => {
+            if ( response.error )
+                dispatch(receivedError(response.error))
+            else {
+                console.debug("received getMe response", response);
+                dispatch(loginSuccess(response))
+            }
+        });
+    }
+}
+
 export const connection = (login, password) => {
     return dispatch => {
         dispatch(requestConnection());
         userApi.connection(login, password,
             response => {
-                if (response.error)
-                    dispatch(receivedError());
+                if ( response.token ) {
+                    dispatch(retreiveTokenSuccess(response.token));
+                    connectUtil.storeSession(response.token);
+                    dispatch(getMe(response.token));
+                }
                 else {
-                    dispatch(loginSuccess(response));
-                    connectUtil.storeSession(login, password, response);
+                    dispatch(receivedError(response));
                 }
         });
     };
@@ -78,9 +102,11 @@ export const logout = () => {
 export const restoreSession = () => {
     return (dispatch, getState) => {
         if ( !getState().user.isConnected ) {
-            const stored_session = connectUtil.getSession();
-            if ( stored_session )
-                dispatch(connection(stored_session.login, stored_session.password));
+            const stored_token = connectUtil.getSession();
+            if ( stored_token ) {
+                dispatch(retreiveTokenSuccess(stored_token));
+                dispatch(getMe(stored_token));
+            }
         }
     };
 }

@@ -6,6 +6,7 @@ const initialSate = {
     isCandidate: false,
     isRecruiter: false,
     data: {},
+    token: false,
     logout_error: false
 };
 
@@ -24,6 +25,13 @@ const user = (state = initialSate, action) => {
                 data: action.data,
                 isRecruiter: action.data.isRecruiter || false,
                 isCandidate: action.data.isCandidate || false
+            }
+        case types.TOKEN_RETREIVED:
+            return {
+                ...state,
+                isFetching: false,
+                isConnected: false,
+                token: action.token
             }
         case types.CONNECTION_REFUSED:
             return {

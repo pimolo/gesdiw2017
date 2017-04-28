@@ -6,26 +6,22 @@ export default class ConnectionUtils {
     }
     isLoginValid = login => login_regex.test(login)
     isPasswordValid = password => password.length > 2
-    storeSession = (login, password) => {
+    storeSession = token => {
         if ( localStorage ) {
-            localStorage.setItem("login", login);
-            localStorage.setItem("password", password);
+            localStorage.setItem("token", token);
         }
     }
     getSession = () => {
         if ( localStorage ) {
-            const login = localStorage.getItem("login");
-            const password = localStorage.getItem("password");
-            if ( login && this.isLoginValid(login) && password && this.isPasswordValid(password))
-                return {login, password}
+            const token = localStorage.getItem("token");
+            if ( token && this.isPasswordValid(token) )
+                return token
         }
         return false;
     }
     killSession = () => {
-        if ( localStorage ) {
-            localStorage.removeItem("login");
-            localStorage.removeItem("password");
-        }
+        if ( localStorage )
+            localStorage.removeItem("token");
     }
 
 }

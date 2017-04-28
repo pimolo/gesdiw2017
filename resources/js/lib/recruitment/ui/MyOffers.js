@@ -96,7 +96,6 @@ export default class MyOffers extends React.PureComponent {
                             style={styles.rdvButtonContainer}
                             buttonStyle={styles.buttonStyle}
                             labelPosition="before"
-                            onTouchTap={this.props.displayMyCalendar}
                         />
                     </article>
                     <article style={styles.cardOffer} className="text-center display-flex-column space-between offer-card full-width medium-grey">

@@ -10,9 +10,9 @@ export default class UserApi {
     connection(login, password, callback) {
         $.ajax({
             method: "POST",
-            url: base_url + "/auth/basic/login",
+            url: base_url + "/getAccessToken",
             data:{
-                username: login,
+                email: login,
                 password
             }
         }).done( response => {
@@ -23,7 +23,19 @@ export default class UserApi {
     linkedinConnection(callback) {
         $.ajax({
             method: "GET",
-            url: base_url + "/auth/linkedin/login"
+            url: base_url + "/linkedin/login"
+        }).done( response => {
+            callback(response);
+        });
+    }
+
+    getMe(token, callback) {
+        $.ajax({
+            method: "GET",
+            url: base_url + "/users/me",
+            beforeSend(xhr) {
+                xhr.setRequestHeader('Authorization', 'JWT ' + token);
+            }
         }).done( response => {
             callback(response);
         });
@@ -32,7 +44,7 @@ export default class UserApi {
     logout(callback) {
         return $.ajax({
             method: "GET",
-            url: base_url + "/auth/logout"
+            url: base_url + "/logout"
         }).done( response => {
             callback(response);
         });

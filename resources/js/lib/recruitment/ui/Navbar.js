@@ -78,11 +78,14 @@ export default class Navbar extends React.PureComponent {
 
     renderRightElementsConnected() {
         return (
-            <FlatButton
-                labelStyle={styles.linkLabel}
-                onTouchTap={this.props.logout}
-                label="deconnexion"
-            />
+            <div className="display-flex-column space-around">
+                <p className="color-white title-6 text-right">Bonjour, {this.props.user.data.displayName}</p>
+                <FlatButton
+                    labelStyle={styles.linkLabel}
+                    onTouchTap={this.props.logout}
+                    label="deconnexion"
+                />
+            </div>
         );
     }
     renderRightElementsVisitor() {
