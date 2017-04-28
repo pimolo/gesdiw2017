@@ -1,6 +1,6 @@
-# gesdiw2017
+# Hackathon - GFI Informatique - GESDIW2017
 
-# Installation
+## Installation
 
 L'application fonctionne avec ReactJS côté front-end, et avec NodeJS côté back-end.
 Pour installer l'application il faut donc installer ces deux technologies.
