@@ -61,10 +61,12 @@ export default class Navbar extends React.PureComponent {
             <div className="full-height display-flex-row">
                 {this.renderLogo()}
                 <div className="full-height display-flex-row" style={styles.centerLinksContainer}>
-                    <FlatButton onTouchTap={this.props.displayMyProfile} labelStyle={styles.linkLabel} label="mon profil"/>
-                    <FlatButton onTouchTap={this.props.displayMyCalendar} labelStyle={styles.linkLabel} label="mon calendrier"/>
-                    <FlatButton onTouchTap={this.props.displayMyOffers} labelStyle={styles.linkLabel} label="mes offres"/>
-                    <FlatButton onTouchTap={this.props.displayMyTests} labelStyle={styles.linkLabel} label="mes tests"/>
+                    <FlatButton onTouchTap={this.props.displayMyProfile} primary={this.props.content.current === "my_profile"} labelStyle={styles.linkLabel}
+                     label="mon profil"/>
+                    <FlatButton onTouchTap={this.props.displayMyCalendar} labelStyle={styles.linkLabel}
+                    primary={this.props.content.current === "my_calendar"} label="mon calendrier"/>
+                    <FlatButton onTouchTap={this.props.displayMyOffers} primary={this.props.content.current === "my_offers"} labelStyle={styles.linkLabel} label="mes offres"/>
+                    <FlatButton onTouchTap={this.props.displayMyTests} primary={this.props.content.current === "my_tests"} labelStyle={styles.linkLabel} label="mes tests"/>
                 </div>
             </div>
         );
