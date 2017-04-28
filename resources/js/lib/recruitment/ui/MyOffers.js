@@ -1,6 +1,9 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
+import OfferModal from '../container/OfferModal';
+import FlatButton from 'material-ui/FlatButton';
+import LocationSearch from 'material-ui/svg-icons/device/location-searching';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 
 const styles = {
@@ -31,6 +34,60 @@ export default class MyOffers extends React.PureComponent {
         super(props);
     }
 
+    getLeftTestsToPass(offer_tests) {
+        // TODO: compare user.data.tests to these ones
+    }
+
+    componentDidMount() {
+        console.debug("get suggested offers");
+        this.props.getSuggestedOffers();
+    }
+
+    renderLeftOverTests(left_tests) {
+        if ( left_tests.length === 0 )
+            return (<p className="offer-element color-success">tests validés</p>)
+        else {
+            return (
+                <p className="offer-element color-invalid">{left_tests.map( t => t.name + " niveau "+t.requiredExperience ).join(", ")}</p>
+            )
+        }
+    }
+
+    renderOfferButton(offer, left_tests) {
+        if ( left_tests.length === 0 ) {
+            return (<RaisedButton
+                label="prendre rdv"
+                style={styles.rdvButtonContainer}
+                buttonStyle={styles.buttonStyle}
+                labelPosition="before"
+            />);
+        } else {
+            return (<RaisedButton
+                label="consulter"
+                style={styles.rdvButtonContainer}
+                labelPosition="before"
+                onTouchTap={() => {
+                    this.props.display_offer(offer);
+                }}
+            />);
+        }
+    }
+
+    renderTableRows() {
+        return this.props.user.suggested_offers.map( offer => {
+            return (
+                <TableRow>
+                    <TableRowColumn>{offer.title}</TableRowColumn>
+                    <TableRowColumn>{offer.city}</TableRowColumn>
+                    <TableRowColumn>{offer.contractType}</TableRowColumn>
+                    <TableRowColumn><FlatButton
+                      icon={<LocationSearch />}
+                      onTouchTap={() => {this.props.display_offer(offer);}}
+                    /></TableRowColumn>
+                </TableRow>
+            );
+        });
+    }
     renderInterestingOffers() {
         return (
             <Table className="gfi-table-no-select" selectable={false} fixedHeader={true}>
@@ -45,33 +102,30 @@ export default class MyOffers extends React.PureComponent {
                     </TableRow>
                 </TableHeader>
                 <TableBody stripedRows={true} displayRowCheckbox={false}>
-                    <TableRow>
-                        <TableRowColumn>Développeur IOS</TableRowColumn>
-                        <TableRowColumn>Paris</TableRowColumn>
-                        <TableRowColumn>CDD</TableRowColumn>
-                        <TableRowColumn>Consulter</TableRowColumn>
-                    </TableRow>
-                    <TableRow>
-                        <TableRowColumn>Développeur IOS</TableRowColumn>
-                        <TableRowColumn>Paris</TableRowColumn>
-                        <TableRowColumn>CDD</TableRowColumn>
-                        <TableRowColumn>Consulter</TableRowColumn>
-                    </TableRow>
-                    <TableRow>
-                        <TableRowColumn>Développeur IOS</TableRowColumn>
-                        <TableRowColumn>Paris</TableRowColumn>
-                        <TableRowColumn>CDD</TableRowColumn>
-                        <TableRowColumn>Consulter</TableRowColumn>
-                    </TableRow>
-                    <TableRow>
-                        <TableRowColumn>Développeur IOS</TableRowColumn>
-                        <TableRowColumn>Paris</TableRowColumn>
-                        <TableRowColumn>CDD</TableRowColumn>
-                        <TableRowColumn>Consulter</TableRowColumn>
-                    </TableRow>
+                    {this.renderTableRows()}
                 </TableBody>
             </Table>
         );
+    }
+
+    renderMyOffers() {
+        if (this.props.user.data.offers.length  > 0) {
+            return this.props.user.data.offers.map( _offer => {
+                const offer = _offer.offerId;
+                const left_tests = this.getLeftTestsToPass(offer.qualifications) || offer.qualifications;
+                return (
+                  <article style={styles.cardOffer} className="text-center display-flex-column space-between offer-card full-width medium-grey">
+                      <p className="title-3 uppercase">{offer.title}</p>
+                      <p className="offer-element">{offer.city + " - " + offer.location}</p>
+                      <p className="offer-element">Contrat : <span className="font-bold">{offer.contractType}</span></p>
+                      {this.renderLeftOverTests(left_tests)}
+                      {this.renderOfferButton(offer, left_tests)}
+                  </article>
+                );
+            })
+        } else {
+            return (<p className="full-width text-left margin-reset">Vous n'avez montré de l'intérêt pour aucune offre</p>);
+        }
     }
 
     render () {
@@ -86,31 +140,17 @@ export default class MyOffers extends React.PureComponent {
 
                 <h3 style={styles.secondTitle} className="uppercase full-width title-4 text-left medium-grey font-bold">Mes candidatures</h3>
                 <div style={styles.secondTitle} className="display-flex-row justify-start margin-reset full-width">
-                    <article style={styles.cardOffer} className="text-center display-flex-column space-between offer-card full-width medium-grey">
-                        <p className="title-3 uppercase">développeur(se) full stack - php & java - expert</p>
-                        <p className="offer-element">23 rue de patrick balkany, t'es un champion - FISTCITY 666</p>
-                        <p className="offer-element">Contrat : <span className="font-bold">CDI</span></p>
-                        <p className="offer-element color-success">tests validés</p>
-                        <RaisedButton
-                            label="RDV"
-                            style={styles.rdvButtonContainer}
-                            buttonStyle={styles.buttonStyle}
-                            labelPosition="before"
-                        />
-                    </article>
-                    <article style={styles.cardOffer} className="text-center display-flex-column space-between offer-card full-width medium-grey">
-                        <p className="title-3 uppercase">développeur(se) apprenti - php & java - junior</p>
-                        <p className="offer-element">23 rue de patrick balkany, t'es un champion - FISTCITY 666</p>
-                        <p className="offer-element">Contrat : <span className="font-bold">CDI</span></p>
-                        <p className="offer-element">test java : <span className="dark-grey">Non validé</span></p>
-                    </article>
+                    {this.renderMyOffers()}
                 </div>
                 <h3 style={styles.thirdTitle} className="uppercase full-width title-4 text-left medium-grey font-bold">Offres qui peuvent vous intéresser</h3>
                 {this.renderInterestingOffers()}
+                <OfferModal/>
           </main>
         );
     }
 }
 MyOffers.propTypes = {
-    displayMyCalendar: PropTypes.func.isRequired
+    displayMyCalendar: PropTypes.func.isRequired,
+    display_offer: PropTypes.func.isRequired,
+    getSuggestedOffers: PropTypes.func.isRequired
 };

@@ -156,3 +156,24 @@ export const addOfferToInterests = offer => {
         })
     }
 }
+
+const retreivedSuggestedOffers = offers => {
+    return {
+        type: types.RETREIVED_SUGGESTED_OFFERS,
+        offers
+    }
+}
+
+export const getSuggestedOffers = () => {
+    return (dispatch, getState) => {
+        dispatch(requestConnection());
+        offerApi.getSuggestedOffers(getState().user.token, response => {
+            if ( response.error )
+                dispatch(receivedError(response.error));
+            else {
+                const offers = getState().offers.data.filter( global_offer =>  response.find( res_offer => res_offer._id._id === global_offer._id ))
+                dispatch(retreivedSuggestedOffers(offers));
+            }
+        });
+    }
+}

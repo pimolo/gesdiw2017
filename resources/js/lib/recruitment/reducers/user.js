@@ -7,7 +7,8 @@ const initialSate = {
     isRecruiter: false,
     data: {},
     token: false,
-    logout_error: false
+    logout_error: false,
+    suggested_offers: []
 };
 
 const user = (state = initialSate, action) => {
@@ -73,6 +74,12 @@ const user = (state = initialSate, action) => {
                     ...state.data,
                     offers: action.offers
                 }
+            }
+        case types.RETREIVED_SUGGESTED_OFFERS:
+            return {
+                ...state,
+                isFetching: false,
+                suggested_offers: action.offers
             }
         default:
             return state;
