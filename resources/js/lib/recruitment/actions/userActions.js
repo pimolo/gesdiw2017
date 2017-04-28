@@ -134,8 +134,7 @@ export const linkedinConnection = () => {
 
 const offerAddedToInterest = all_offers => {
     return {
-        type: types.ADD_INTEREST_SUCCESS,
-        all_offers
+        type: types.ADD_INTEREST_SUCCESS
     };
 };
 
@@ -145,8 +144,15 @@ export const addOfferToInterests = offer => {
         offerApi.addOfferToUserInterests(getState().user.token, offer._id, response => {
             if ( response.error )
                 dispatch(receivedError(response.error));
-            else
-                dispatch(offerAddedToInterest(response));
+            else {
+                userApi.getApplies(getState().user.token, res => {
+                    dispatch(offerAddedToInterest());
+                    if ( res.error ) {
+                        console.debug("couldn't fetch user applies", res)
+                    } else
+                        dispatch(retreiveOffers(res));
+                })
+            }
         })
     }
 }

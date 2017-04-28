@@ -19,6 +19,12 @@ export default class OfferModal extends React.PureComponent {
         super(props);
     }
 
+    isOfferInInterest(offer) {
+        const matched_offer = this.props.user.data.offers.find( _offer => _offer._id === offer._id );
+        console.debug("matched_offer", matched_offer);
+        return ( typeof matched_offer !== "undefined"  ) ? true : false;
+    }
+
     renderContent(offer) {
         return (
             <div className="display-flex-column full-width space-between">
@@ -47,16 +53,32 @@ export default class OfferModal extends React.PureComponent {
                   primary={true}
                   onTouchTap={this.props.hide_offer}
                 />,
-                <FlatButton
-                  label="Intéressé"
-                  primary={true}
-                  keyboardFocused={true}
-                  onTouchTap={() => {
-                    this.props.addOfferToInterests(offer);
-                    this.props.hide_offer();
-                  }}
-                />,
             ];
+            if ( this.isOfferInInterest(offer) ) {
+                actions.push(
+                    <FlatButton
+                      label="Plus intéressé"
+                      primary={false}
+                      keyboardFocused={false}
+                      onTouchTap={() => {
+                        this.props.addOfferToInterests(offer);
+                        this.props.hide_offer();
+                      }}
+                    />
+                );
+            } else {
+                actions.push(
+                    <FlatButton
+                      label="Intéressé"
+                      primary={true}
+                      keyboardFocused={true}
+                      onTouchTap={() => {
+                        this.props.addOfferToInterests(offer);
+                        this.props.hide_offer();
+                      }}
+                    />
+                );
+            }
             return (
                 <Dialog
                     title={offer.title + " - " + offer.contractType}
