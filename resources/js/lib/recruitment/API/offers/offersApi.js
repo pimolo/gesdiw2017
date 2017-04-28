@@ -15,6 +15,18 @@ export default class OffersApi {
         });
     }
 
+    addOfferToUserInterests(token, offer_id, callback) {
+        $.ajax({
+            method: "POST",
+            url: base_url + "/apply/"+offer_id,
+            beforeSend(xhr) {
+                xhr.setRequestHeader('Authorization', 'JWT ' + token);
+            }
+        }).done( response => {
+            callback(response);
+        });
+    }
+
     // /suggested,  with user bearer
     // /users/suggested,  with user bearer  --> classement
 

@@ -1,9 +1,11 @@
 import * as types from "./userTypes";
 import UserApi from "../API/user/userApi";
+import OffersApi from "../API/offers/offersApi";
 import connectionUtil from "../utils/connection";
 
 const connectUtil = new connectionUtil();
 const userApi = new UserApi();
+const offerApi = new OffersApi();
 
 const receivedError = error => {
     console.group();
@@ -41,8 +43,10 @@ export const getMe = token => {
     return dispatch => {
         dispatch(requestConnection());
         userApi.getMe(token, response => {
-            if ( response.error )
-                dispatch(receivedError(response.error))
+            if ( response.error ) {
+                dispatch(receivedError(response.error));
+                dispatch(logout());
+            }
             else {
                 dispatch(loginSuccess(response))
             }
@@ -110,5 +114,24 @@ export const linkedinConnection = () => {
             else
                 dispatch(receivedError());
         });
+    }
+}
+
+const offerAddedToInterest = all_offers => {
+    return {
+        type: types.ADD_INTEREST_SUCCES,
+        all_offers
+    };
+};
+
+export const addOfferToInterests = offer => {
+    return (dispatch, getState) => {
+        dispatch(requestConnection());
+        offerApi.addOfferToUserInterests(getState().user.token, offer._id, response => {
+            if ( response.error )
+                dispatch(receivedError(response.error));
+            else
+                dispatch(offerAddedToInterest(response));
+        })
     }
 }

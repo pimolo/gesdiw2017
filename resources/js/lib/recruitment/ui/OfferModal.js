@@ -19,18 +19,42 @@ export default class OfferModal extends React.PureComponent {
         super(props);
     }
 
+    renderContent(offer) {
+        return (
+            <div className="display-flex-column full-width space-between">
+                <div style={styles.subContainer} className="display-flex-column space-between full-width">
+                    <p className="full-width text-left title-3 font-bold">Mission</p>
+                    <p style={styles.parag} >{offer.description.mission || "Aucune description à ce jour"}</p>
+                </div>
+                <div style={styles.subContainer} className="display-flex-column space-between full-width">
+                    <p className="full-width text-left title-3 font-bold">Profile recherché</p>
+                    <p style={styles.parag} >{offer.description.profile || "Aucune description à ce jour"}</p>
+                </div>
+                <div style={styles.subContainer} className="display-flex-column space-between full-width">
+                    <p className="full-width text-left title-3 font-bold">Compétences requises</p>
+                    <p className="full-width text-left" style={styles.parag} >{offer.qualifications.map( o => o.name ).join(', ') || "Aucune description à ce jour"}</p>
+                </div>
+            </div>
+        );
+    }
+
     render () {
         const offer = this.props.offers.displaid_offer;
         if ( offer !== false ) {
             const actions = [
                 <FlatButton
-                  label="Cancel"
+                  label="Fermer"
                   primary={true}
+                  onTouchTap={this.props.hide_offer}
                 />,
                 <FlatButton
-                  label="Submit"
+                  label="Intéressé"
                   primary={true}
                   keyboardFocused={true}
+                  onTouchTap={() => {
+                    this.props.addOfferToInterests(offer);
+                    this.props.hide_offer();
+                  }}
                 />,
             ];
             return (
@@ -38,24 +62,11 @@ export default class OfferModal extends React.PureComponent {
                     title={offer.title + " - " + offer.contractType}
                     actions={actions}
                     modal={false}
-                    open={offer !== false}
+                    open={offer !== false && !this.props.user.isFetching}
                     autoScrollBodyContent={true}
                     onRequestClose={this.props.hide_offer}
                 >
-                    <div className="display-flex-column full-width space-between">
-                        <div style={styles.subContainer} className="display-flex-column space-between full-width">
-                            <p className="full-width text-left title-3 font-bold">Mission</p>
-                            <p style={styles.parag} >{offer.description.mission || "Aucune description à ce jour"}</p>
-                        </div>
-                        <div style={styles.subContainer} className="display-flex-column space-between full-width">
-                            <p className="full-width text-left title-3 font-bold">Profile recherché</p>
-                            <p style={styles.parag} >{offer.description.profile || "Aucune description à ce jour"}</p>
-                        </div>
-                        <div style={styles.subContainer} className="display-flex-column space-between full-width">
-                            <p className="full-width text-left title-3 font-bold">Compétences requises</p>
-                            <p className="full-width text-left" style={styles.parag} >{offer.qualifications.map( o => o.name ).join(', ') || "Aucune description à ce jour"}</p>
-                        </div>
-                    </div>
+                    {this.renderContent(offer)}
                 </Dialog>
             );
         } else
@@ -63,5 +74,6 @@ export default class OfferModal extends React.PureComponent {
     }
 }
 OfferModal.propTypes = {
-    hide_offer: PropTypes.func.isRequired
+    hide_offer: PropTypes.func.isRequired,
+    addOfferToInterests: PropTypes.func.isRequired
 };

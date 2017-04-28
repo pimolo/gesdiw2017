@@ -38,6 +38,9 @@ export default class UserApi {
             }
         }).done( response => {
             callback(response);
+        }).fail( response => {
+            // console.log("ffs", response);
+            callback({error: response})
         });
     }
 

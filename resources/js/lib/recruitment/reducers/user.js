@@ -51,6 +51,15 @@ const user = (state = initialSate, action) => {
                 ...state,
                 logout_error: true
             }
+        case types.ADD_INTEREST_SUCCES:
+            return {
+                ...state,
+                isFetching: false,
+                data: {
+                    ...state.data,
+                    offers: action.all_offers
+                }
+            }
         default:
             return state;
     }
